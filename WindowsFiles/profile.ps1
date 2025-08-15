@@ -1,20 +1,35 @@
 Import-Module Dotenv
+Import-Module posh-git
 Enable-Dotenv
+
 Function prompt {
     if(Test-Path function:/Update-Dotenv) { Dotenv\Update-Dotenv }
     $currentDrive = $pwd.drive.name
     $currentFolder = Split-Path -path $pwd -Leaf
     try {
-        $gitdir = Split-Path -Path $(git rev-parse --show-toplevel) -Leaf
+        $gitRootPath = git rev-parse --show-toplevel
+        $gitdir = Split-Path -Path $gitRootPath -Leaf
+        
+        # Calculate relative path from git root to current directory
+        $relativePath = Resolve-Path -Path $pwd -Relative -RelativeBasePath $gitRootPath
+        $pathParts = $relativePath -split '\\'
+        # Remove empty parts and current directory marker
+        $pathParts = $pathParts | Where-Object { $_ -ne "" -and $_ -ne "." }
+        $depthFromRoot = $pathParts.Count - 1
     }catch{
         $gitdir = ""
+        $depthFromRoot = 0
     }
     Write-Host "[$currentDrive`:]" -ForegroundColor DarkGreen -NoNewline
     if($gitdir -ne  "") {
         Write-Host " $gitdir`:$(git branch --show-current)" -ForegroundColor Magenta -NoNewline
     }
     if ($gitdir -ne $currentFolder){
-        Write-Host " $currentFolder" -ForegroundColor DarkCyan -NoNewline
+        if ($depthFromRoot -gt 0) {
+            Write-Host " $depthFromRoot/$currentFolder" -ForegroundColor DarkCyan -NoNewline
+        } else {
+            Write-Host " $currentFolder" -ForegroundColor DarkCyan -NoNewline
+        }
     }
     return "> "
 }
