@@ -1,0 +1,6 @@
+[push]
+    autoSetupRemote = true
+[core]
+	autocrlf = true
+[rerere]
+	enabled = true
