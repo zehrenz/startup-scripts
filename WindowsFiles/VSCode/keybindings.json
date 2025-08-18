@@ -1,107 +1,164 @@
 // Place your key bindings in this file to override the defaults
 [
-  {
-    "key": "alt+enter",
-    "command": "editor.action.quickFix",
-    "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
-  },
-  {
-    "key": "ctrl+.",
-    "command": "-editor.action.quickFix",
-    "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
-  },
-  {
-    "key": "shift+enter",
-    "command": "-python.execInREPL",
-    "when": "config.python.REPL.sendToNativeREPL && editorTextFocus && !jupyter.ownsSelection && !notebookEditorFocused && editorLangId == 'python' && activeEditor != 'workbench.editor.interactive'"
-  },
-  {
-    "key": "shift+enter",
-    "command": "-python.execSelectionInTerminal",
-    "when": "editorTextFocus && !config.python.REPL.sendToNativeREPL && !findInputFocussed && !jupyter.ownsSelection && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python' && activeEditor != 'workbench.editor.interactive'"
-  },
-  {
-    "key": "ctrl+enter",
-    "command": "-editor.action.insertLineAfter",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "ctrl+[",
-    "command": "workbench.action.terminal.focusPrevious",
-    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
-  },
-  {
-    "key": "ctrl+pageup",
-    "command": "-workbench.action.terminal.focusPrevious",
-    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
-  },
-  {
-    "key": "ctrl+]",
-    "command": "workbench.action.terminal.focusNext",
-    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
-  },
-  {
-    "key": "ctrl+pagedown",
-    "command": "-workbench.action.terminal.focusNext",
-    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
-  },
-  {
-    "key": "ctrl+shift+y",
-    "command": "-workbench.debug.action.toggleRepl",
-    "when": "workbench.panel.repl.view.active"
-  },
-  {
-    "key": "ctrl+shift+b",
-    "command": "-workbench.action.tasks.build",
-    "when": "taskCommandsRegistered"
-  },
-  {
-    "key": "ctrl+; c",
-    "command": "-testing.runAtCursor",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+l",
-    "command": "-extension.vim_navigateCtrlL",
-    "when": "editorTextFocus && vim.active && vim.use<C-l> && !inDebugRepl"
-  },
-  {
-    "key": "shift+enter",
-    "command": "-python.execInREPL",
-    "when": "config.python.REPL.sendToNativeREPL && editorTextFocus && !accessibilityModeEnabled && !jupyter.ownsSelection && !notebookEditorFocused && editorLangId == 'python' && activeEditor != 'workbench.editor.interactive'"
-  },
-  {
-    "key": "shift+enter",
-    "command": "-python.execSelectionInTerminal",
-    "when": "editorTextFocus && !findInputFocussed && !jupyter.ownsSelection && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python' && activeEditor != 'workbench.editor.interactive'"
-  },
-  {
-    "key": "ctrl+space",
-    "command": "workbench.action.terminal.toggleTerminal",
-    "when": "terminal.active"
-  },
-  {
-    "key": "ctrl+`",
-    "command": "-workbench.action.terminal.toggleTerminal",
-    "when": "terminal.active"
-  },
-  {
-    "key": "ctrl+shift+space",
-    "command": "workbench.action.terminal.new",
-    "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
-  },
-  {
-    "key": "ctrl+shift+`",
-    "command": "-workbench.action.terminal.new",
-    "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
-  },
-  {
-    "key": "ctrl+shift+r",
-    "command": "-continue.debugTerminal"
-  },
-  {
-    "key": "ctrl+shift+space",
-    "command": "-editor.action.triggerParameterHints",
-    "when": "editorHasSignatureHelpProvider && editorTextFocus"
-  }
+	{
+		"key": "alt+enter",
+		"command": "editor.action.quickFix",
+		"when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+	},
+	{
+		"key": "ctrl+.",
+		"command": "-editor.action.quickFix",
+		"when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+	},
+	{
+		"key": "shift+enter",
+		"command": "-python.execInREPL",
+		"when": "config.python.REPL.sendToNativeREPL && editorTextFocus && !jupyter.ownsSelection && !notebookEditorFocused && editorLangId == 'python' && activeEditor != 'workbench.editor.interactive'"
+	},
+	{
+		"key": "shift+enter",
+		"command": "-python.execSelectionInTerminal",
+		"when": "editorTextFocus && !config.python.REPL.sendToNativeREPL && !findInputFocussed && !jupyter.ownsSelection && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python' && activeEditor != 'workbench.editor.interactive'"
+	},
+	{
+		"key": "ctrl+enter",
+		"command": "-editor.action.insertLineAfter",
+		"when": "editorTextFocus && !editorReadonly"
+	},
+	{
+		"key": "ctrl+[",
+		"command": "workbench.action.terminal.focusPrevious",
+		"when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+	},
+	{
+		"key": "ctrl+pageup",
+		"command": "-workbench.action.terminal.focusPrevious",
+		"when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+	},
+	{
+		"key": "ctrl+]",
+		"command": "workbench.action.terminal.focusNext",
+		"when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+	},
+	{
+		"key": "ctrl+pagedown",
+		"command": "-workbench.action.terminal.focusNext",
+		"when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+	},
+	{
+		"key": "ctrl+shift+y",
+		"command": "-workbench.debug.action.toggleRepl",
+		"when": "workbench.panel.repl.view.active"
+	},
+	{
+		"key": "ctrl+shift+b",
+		"command": "-workbench.action.tasks.build",
+		"when": "taskCommandsRegistered"
+	},
+	{
+		"key": "ctrl+; c",
+		"command": "-testing.runAtCursor",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+l",
+		"command": "-extension.vim_navigateCtrlL",
+		"when": "editorTextFocus && vim.active && vim.use<C-l> && !inDebugRepl"
+	},
+	{
+		"key": "shift+enter",
+		"command": "-python.execInREPL",
+		"when": "config.python.REPL.sendToNativeREPL && editorTextFocus && !accessibilityModeEnabled && !jupyter.ownsSelection && !notebookEditorFocused && editorLangId == 'python' && activeEditor != 'workbench.editor.interactive'"
+	},
+	{
+		"key": "shift+enter",
+		"command": "-python.execSelectionInTerminal",
+		"when": "editorTextFocus && !findInputFocussed && !jupyter.ownsSelection && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python' && activeEditor != 'workbench.editor.interactive'"
+	},
+	{
+		"key": "ctrl+space",
+		"command": "workbench.action.terminal.toggleTerminal",
+		"when": "terminal.active"
+	},
+	{
+		"key": "ctrl+`",
+		"command": "-workbench.action.terminal.toggleTerminal",
+		"when": "terminal.active"
+	},
+	{
+		"key": "ctrl+shift+space",
+		"command": "workbench.action.terminal.new",
+		"when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+	},
+	{
+		"key": "ctrl+shift+`",
+		"command": "-workbench.action.terminal.new",
+		"when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+	},
+	{
+		"key": "ctrl+shift+r",
+		"command": "-continue.debugTerminal"
+	},
+	{
+		"key": "ctrl+shift+space",
+		"command": "-editor.action.triggerParameterHints",
+		"when": "editorHasSignatureHelpProvider && editorTextFocus"
+	},
+	{
+		"key": "shift+tab",
+		"command": "editor.action.inlineSuggest.commit",
+		"when": "inlineEditIsVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible"
+	},
+	{
+		"key": "tab",
+		"command": "-editor.action.inlineSuggest.commit",
+		"when": "inlineEditIsVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible"
+	},
+	{
+		"key": "ctrl+tab",
+		"command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+		"when": "!activeEditorGroupEmpty"
+	},
+	{
+		"key": "ctrl+tab",
+		"command": "-workbench.action.quickOpenNavigateNextInEditorPicker",
+		"when": "inEditorsPicker && inQuickOpen"
+	},
+	{
+		"key": "ctrl+l",
+		"command": "-continue.focusContinueInput"
+	},
+	{
+		"key": "ctrl+l",
+		"command": "-workbench.action.chat.newChat",
+		"when": "chatEditingParticipantRegistered && chatIsEnabled && inChat"
+	},
+	{
+		"key": "ctrl+l",
+		"command": "workbench.panel.chat",
+		"when": "workbench.panel.chat.view.copilot.active"
+	},
+	{
+		"key": "ctrl+alt+i",
+		"command": "-workbench.panel.chat",
+		"when": "workbench.panel.chat.view.copilot.active"
+	},
+	{
+		"key": "ctrl+shift+l",
+		"command": "workbench.action.chat.newChat"
+	},
+	{
+		"key": "ctrl+alt+down",
+		"command": "workbench.action.terminal.resizePaneDown",
+		"when": "terminal.active"
+	},
+	{
+		"key": "ctrl+alt+up",
+		"command": "workbench.action.terminal.resizePaneUp",
+		"when": "terminal.active"
+	},
+	{
+		"key": "ctrl+alt+space",
+		"command": "workbench.action.terminal.killActiveTab"
+	}
 ]
