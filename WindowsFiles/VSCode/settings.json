@@ -1,4 +1,5 @@
 {
+	"editor.tabSize": 2,
 	"workbench.colorTheme": "Default Dark Modern",
 	"editor.minimap.enabled": false,
 	"security.allowedUNCHosts": ["wsl.localhost"],
@@ -25,6 +26,7 @@
 		}
 	},
 	"isort.args": ["--profile", "black"],
+	"update.showReleaseNotes": false,
 	"vim.useSystemClipboard": true,
 	"vim.replaceWithRegister": true,
 	"vim.visualstar": true,
@@ -34,11 +36,15 @@
 	"vim.normalModeKeyBindings": [
 		{
 			"before": ["K"],
-			"after": ["i", "<CR>", "<ESC>", "l"]
+			"after": ["i", "<CR>", "<ESC>", "^"]
 		},
 		{
 			"before": ["Y"],
 			"after": ["y", "$"]
+		},
+		{
+			"before": ["y", "A"],
+			"after": ["g", "g", "y", "G"]
 		},
 		{
 			"before": ["d", "p"],
@@ -137,6 +143,10 @@
 			"commands": ["testing.refreshTests"]
 		},
 		{
+			"before": ["<leader>", "t", "s"],
+			"commands": ["workbench.action.debug.stop"]
+		},
+		{
 			"before": ["<leader>", "R"],
 			"commands": ["editor.action.rename"]
 		},
@@ -148,12 +158,20 @@
 			]
 		},
 		{
-			"before": ["<leader>", "e"],
+			"before": ["g", "e"],
 			"commands": ["editor.action.marker.next"]
 		},
 		{
 			"before": ["<leader>", "m"],
 			"commands": ["markdown.showPreviewToSide"]
+		},
+		{
+			"before": ["<leader>", "<leader>", "l"],
+			"commands": ["workbench.action.editor.changeLanguageMode"]
+		},
+		{
+			"before": ["<leader>", "r"],
+			"commands": ["editor.action.rename"]
 		}
 	],
 	"vim.insertModeKeyBindings": [
@@ -172,6 +190,10 @@
 		{
 			"before": ["<leader>", "s"],
 			"after": ["y", ":", "%", "s", "/", "<c-p>", "/"]
+		},
+		{
+			"before": ["<leader>", "f"],
+			"after": ["y", "/", "<c-p>"]
 		}
 	]
 }
