@@ -94,13 +94,61 @@ if status is-interactive
 		git status $argv
 	end
 	function gas
-		git add * $argv
+		git add "*" $argv
+	end
+	function gcp
+		git checkout $argv[1] && git pull
+	end
+	function gcb
+		git checkout -b $argv
 	end
 	function gcm
 		git commit -m $argv
 	end
+	function gcam
+		git add "*" && git commit -m $argv
+	end
+	function gca
+		git commit --amend --no-edit
+	end
+	function gcaa
+		git add "*" && git commit --amend --no-edit
+	end
+	function gbclean
+		set -l ignore dev qa prod main master
+		set -l branches (git branch --merged)
+		for branch in $branches
+			set -l trimmed (string trim $branch)
+			if string match -q '*' $trimmed
+				continue
+			end
+			if contains $trimmed $ignore
+				continue
+			end
+			git branch -D $trimmed
+		end
+	end
+	function gblist
+		git branch --list $argv
+	end
+	function glog
+		git log --graph --oneline --decorate $argv
+	end
 	function gtree
 		git log --graph --oneline --all
 	end
+	function gr
+		git rebase HEAD~$argv[1]
+	end
+	function gri
+		git rebase -i HEAD~$argv[1]
+	end
+	function grom
+		git fetch && git rebase origin/main
+	end
+	function gsm
+		git switch -
+	end
 
 end
+
