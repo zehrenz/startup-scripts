@@ -1,5 +1,142 @@
 // Place your key bindings in this file to override the defaults
 [
+	//region Dance
+	// {
+	// 	"key": "space w",
+	// 	"command": "workbench.action.files.save",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space shift+w",
+	// 	"command": "workbench.action.files.saveAll",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space q",
+	// 	"command": "workbench.action.closeActiveEditor",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space shift+q",
+	// 	"command": "workbench.action.closeAllEditors",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space alt+q",
+	// 	"command": "workbench.action.files.revert",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space h",
+	// 	"command": "workbench.action.navigateLeft",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space j",
+	// 	"command": "workbench.action.navigateDown",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space k",
+	// 	"command": "workbench.action.navigateUp",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space l",
+	// 	"command": "workbench.action.navigateRight",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space shift+h",
+	// 	"command": "workbench.action.moveEditorToLeftGroup",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space shift+j",
+	// 	"command": "workbench.action.moveEditorToBelowGroup",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space shift+k",
+	// 	"command": "workbench.action.moveEditorToAboveGroup",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space shift+l",
+	// 	"command": "workbench.action.moveEditorToRightGroup",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space f",
+	// 	"command": "workbench.action.quickOpen",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space shift+f",
+	// 	"command": "workbench.action.findInFiles",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space t t",
+	// 	"command": "testing.runAtCursor",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space t d",
+	// 	"command": "testing.debugAtCursor",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space t f",
+	// 	"command": "testing.runCurrentFile",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space t a",
+	// 	"command": "runCommands",
+	// 	"args": {
+	// 		"commands": ["testing.refreshTests", "testing.runAll"]
+	// 	},
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space t r",
+	// 	"command": "testing.refreshTests",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space b",
+	// 	"command": "runCommands",
+	// 	"args": {
+	// 		"commands": [
+	// 			"workbench.action.closePanel",
+	// 			"workbench.action.closeSidebar",
+	// 			"workbench.action.closeAuxiliaryBar"
+	// 		]
+	// 	},
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space m",
+	// 	"command": "markdown.showPreviewToSide",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space alt+l",
+	// 	"command": "workbench.action.editor.changeLanguageMode",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space n",
+	// 	"command": "explorer.newFile",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	// {
+	// 	"key": "space r",
+	// 	"command": "editor.action.rename",
+	// 	"when": "editorTextFocus && dance.mode == 'normal'"
+	// },
+	//endregion dance
 	{
 		"key": "alt+enter",
 		"command": "editor.action.quickFix",

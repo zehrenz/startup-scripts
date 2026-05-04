@@ -1,6 +1,6 @@
 {
 	"editor.tabSize": 2,
-	"workbench.colorTheme": "Default Dark Modern",
+	"workbench.colorTheme": "Dark Modern",
 	"editor.minimap.enabled": false,
 	"security.allowedUNCHosts": ["wsl.localhost"],
 	"git.autofetch": true,
@@ -13,6 +13,8 @@
 	"editor.insertSpaces": false,
 	"markdown.preview.scrollPreviewWithEditor": false,
 	"markdown.preview.scrollEditorWithPreview": false,
+	"diffEditor.ignoreTrimWhitespace": true,
+	"chat.agent.enabled": true,
 	"[json][jsonc][typescript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"prettier.useTabs": true,
@@ -24,6 +26,22 @@
 		"editor.codeActionsOnSave": {
 			"source.organizeImports": "explicit"
 		}
+	},
+	"[markdown]": {
+		"diffEditor.ignoreTrimWhitespace": false,
+		"editor.wordWrap": "on",
+		"editor.quickSuggestions": {
+			"comments": "off",
+			"strings": "off",
+			"other": "off"
+		},
+		"editor.useTabStops": false,
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2,
+		"cSpell.fixSpellingWithRenameProvider": true,
+		"cSpell.advanced.feature.useReferenceProviderWithRename": true,
+		"cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/",
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"isort.args": ["--profile", "black"],
 	"update.showReleaseNotes": false,
@@ -147,14 +165,11 @@
 			"commands": ["workbench.action.debug.stop"]
 		},
 		{
-			"before": ["<leader>", "R"],
-			"commands": ["editor.action.rename"]
-		},
-		{
 			"before": ["<leader>", "b"],
 			"commands": [
 				"workbench.action.closePanel",
-				"workbench.action.closeSidebar"
+				"workbench.action.closeSidebar",
+				"workbench.action.closeAuxiliaryBar"
 			]
 		},
 		{
