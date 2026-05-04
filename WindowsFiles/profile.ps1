@@ -37,11 +37,13 @@ Function prompt {
 new-alias -Name np -Value notepad
 # --General functions
 Function prof { code $PROFILE }
+Function admin { Start-Process pwsh -Verb RunAs -ArgumentList "-NoExit", "-Command", "Set-Location '$PWD'"}
 function refreshpath {
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") +
                 ";" +
                 [System.Environment]::GetEnvironmentVariable("Path","User")
 }
+Function wslrestart { Get-Service vmcompute | Restart-Service }
 Function w {wsl ~}
 Function e {explorer .}
 Function c {
@@ -106,6 +108,24 @@ Function gbclean {
 }
 Function gblist { git branch --list $Args }
 Function glog { git log --graph --oneline --decorate }
+Function gr {
+    param(
+        [Parameter(Mandatory=$True)][int]$distance
+    )
+    git rebase HEAD~$distance
+}
+Function gri {
+    param(
+        [Parameter(Mandatory=$True)][int]$distance
+    )
+    git rebase -i HEAD~$distance
+}
+Function grom {
+    git fetch && git rebase origin/main
+}
+Function gsm {
+    git switch -
+}
 
 # --Docker
 $defaultProfile = 'local'
