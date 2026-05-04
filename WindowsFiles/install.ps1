@@ -53,7 +53,7 @@ if(Test-Path $modules_location -PathType Container) {
 }
 
 # Run other install packages
-pwsh ./VSCode/install.ps1
+pwsh ../CommonFiles/VSCode/install.ps1
 
 # Install other winget modules
 $wingetPackages = @(
