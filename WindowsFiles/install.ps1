@@ -59,7 +59,7 @@ pwsh ../CommonFiles/VSCode/install.ps1
 $wingetPackages = @(
     # For all machines
     "Microsoft.VisualStudioCode",
-    "Mozilla.Firefox"
+    "Microsoft.PowerToys"
 )
 
 if($installMode -eq $mode_home){
