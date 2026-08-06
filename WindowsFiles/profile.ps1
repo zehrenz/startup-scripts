@@ -3,7 +3,7 @@ Import-Module posh-git
 Enable-Dotenv
 
 Function prompt {
-    if(Test-Path function:/Update-Dotenv) { Dotenv\Update-Dotenv }
+    if (Test-Path function:/Update-Dotenv) { Dotenv\Update-Dotenv }
     $currentDrive = $pwd.drive.name
     $currentFolder = Split-Path -path $pwd -Leaf
     try {
@@ -16,18 +16,20 @@ Function prompt {
         # Remove empty parts and current directory marker
         $pathParts = $pathParts | Where-Object { $_ -ne "" -and $_ -ne "." }
         $depthFromRoot = $pathParts.Count - 1
-    }catch{
+    }
+    catch {
         $gitdir = ""
         $depthFromRoot = 0
     }
     Write-Host "[$currentDrive`:]" -ForegroundColor DarkGreen -NoNewline
-    if($gitdir -ne  "") {
+    if ($gitdir -ne "") {
         Write-Host " $gitdir`:$(git branch --show-current)" -ForegroundColor Magenta -NoNewline
     }
-    if ($gitdir -ne $currentFolder){
+    if ($gitdir -ne $currentFolder) {
         if ($depthFromRoot -gt 0) {
             Write-Host " $depthFromRoot/$currentFolder" -ForegroundColor DarkCyan -NoNewline
-        } else {
+        }
+        else {
             Write-Host " $currentFolder" -ForegroundColor DarkCyan -NoNewline
         }
     }
@@ -37,15 +39,15 @@ Function prompt {
 new-alias -Name np -Value notepad
 # --General functions
 Function prof { code $PROFILE }
-Function admin { Start-Process pwsh -Verb RunAs -ArgumentList "-NoExit", "-Command", "Set-Location '$PWD'"}
+Function admin { Start-Process pwsh -Verb RunAs -ArgumentList "-NoExit", "-Command", "Set-Location '$PWD'" }
 function refreshpath {
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") +
-                ";" +
-                [System.Environment]::GetEnvironmentVariable("Path","User")
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") +
+    ";" +
+    [System.Environment]::GetEnvironmentVariable("Path", "User")
 }
 Function wslrestart { Get-Service vmcompute | Restart-Service }
-Function w {wsl ~}
-Function e {explorer .}
+Function w { wsl ~ }
+Function e { explorer . }
 Function c {
     param ($filepath)
     if ($null -eq $filepath) {
@@ -66,18 +68,19 @@ Function findenv {
     param (
         [string]$name
     )
-    dir env: | findstr $name
+    Get-ChildItem env: | findstr $name
 }
 
 # --Git
-Function gtop { cd $(git rev-parse --show-toplevel)}
+Function gtop { Set-Location $(git rev-parse --show-toplevel) }
 Function gph { git push $Args }
 Function gpl { git pull $Args }
 Function gf { git fetch $Args }
 Function gs { git status --short $Args }
 Function gas { git add * $Args }
+Function gmatch { param([string]$matcher); git add "*$matcher*" }
 Remove-Alias -Name gc -Force
-Function gc {git checkout @Args }
+Function gc { git checkout @Args }
 Remove-Alias -Name gcb -Force
 Function gcp {
     param ([string]$branch);
@@ -95,9 +98,10 @@ Function gbclean {
         [Alias('a')][switch]$All
     )
     $ignore += @("dev", "qa", "prod", "main")
-    if($All){
+    if ($All) {
         $branches = git branch
-    } else {
+    }
+    else {
         $branches = git branch --merged
     }
     foreach ($branch in $branches) {
@@ -110,13 +114,13 @@ Function gblist { git branch --list $Args }
 Function glog { git log --graph --oneline --decorate }
 Function gr {
     param(
-        [Parameter(Mandatory=$True)][int]$distance
+        [Parameter(Mandatory = $True)][int]$distance
     )
     git rebase HEAD~$distance
 }
 Function gri {
     param(
-        [Parameter(Mandatory=$True)][int]$distance
+        [Parameter(Mandatory = $True)][int]$distance
     )
     git rebase -i HEAD~$distance
 }
@@ -138,7 +142,7 @@ Function pm { python -m $Args }
 Function pt { 
     param(
         [string] $filepath = '.',
-        [parameter(position = 1, ValueFromRemainingArguments=$true)] $Remaining
+        [parameter(position = 1, ValueFromRemainingArguments = $true)] $Remaining
     )
     python -m pytest $filepath $Remaining
 }
