@@ -1,6 +1,6 @@
 [push]
     autoSetupRemote = true
 [core]
-	autocrlf = true
+	autocrlf = input
 [rerere]
 	enabled = true
