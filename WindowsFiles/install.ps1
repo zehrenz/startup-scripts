@@ -1,5 +1,5 @@
 param(
-    [Parameter(position=0)][string]$Mode
+    [Parameter(position = 0)][string]$Mode
 )
 
 # Make this script run from it's own directory
@@ -13,30 +13,36 @@ $modules_location = ".\Modules"
 $mode_home = "home"
 $mode_work = "work"
 
-Function Assign-Mode{
-    param([Parameter(Position=0)][string] $mode)
-    if(($null -eq $mode) -or ($mode -eq "")){
-        return $null}
-    if(($mode -eq "work") -or ($mode -eq "w")){
+Function Assign-Mode {
+    param([Parameter(Position = 0)][string] $mode)
+    if (($null -eq $mode) -or ($mode -eq "")) {
+        return $null
+    }
+    if (($mode -eq "work") -or ($mode -eq "w")) {
         return $mode_work
     }
-    elseif(($mode -eq "home") -or ($mode -eq "h")){
+    elseif (($mode -eq "home") -or ($mode -eq "h")) {
         return $mode_home
     }
-    else{
-        & {Write-Host "[$mode] is not a valid Mode"}
+    else {
+        & { Write-Host "[$mode] is not a valid Mode" }
         return $null
     }
 }
 
 $installMode = Assign-Mode $Mode
-while($null -eq $installMode){
+while ($null -eq $installMode) {
     $Mode = Read-Host -Prompt "Is this for work or home"
     $installMode = Assign-Mode $Mode
 }
 
+# Install posh-git if not already installed
+if (-not (Get-Module -ListAvailable -Name posh-git)) {
+    PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
+}
+
 # Install the profile
-if(Test-Path $profile_location -PathType Leaf){
+if (Test-Path $profile_location -PathType Leaf) {
     New-Item $PROFILE -ItemType File -Force 1> $null
     Copy-Item $profile_location $PROFILE 1> $null
 }
@@ -45,7 +51,7 @@ else {
 }
 
 # Install any modules in ./WindowsFiles/Modules
-if(Test-Path $modules_location -PathType Container) {
+if (Test-Path $modules_location -PathType Container) {
     $module_destination = $env:PSModulePath.Split(";")[0]
     New-Item $module_destination -ItemType Directory -Force 1> $null
     Copy-Item -Path "$modules_location\*" -Destination $module_destination -Recurse
@@ -62,18 +68,18 @@ $wingetPackages = @(
     "Microsoft.PowerToys"
 )
 
-if($installMode -eq $mode_home){
+if ($installMode -eq $mode_home) {
     $wingetPackages += @(
         # On personal machines only
         "Discord.Discord",
         "Valve.Steam"
     )
 }
-elseif($installMode -eq $mode_work){
+elseif ($installMode -eq $mode_work) {
     $wingetPackages += @(
         # On work machines only
     )
 }
-foreach($package in $wingetPackages){
+foreach ($package in $wingetPackages) {
     winget install -e --id $package --accept-source-agreements --accept-package-agreements --source winget
 }
