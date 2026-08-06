@@ -75,5 +75,5 @@ elseif($installMode -eq $mode_work){
     )
 }
 foreach($package in $wingetPackages){
-    winget install -e --id $package --accept-source-agreements --accept-package-agreements
+    winget install -e --id $package --accept-source-agreements --accept-package-agreements --source winget
 }
