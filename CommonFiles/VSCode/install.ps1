@@ -3,25 +3,33 @@ $scriptpath = $MyInvocation.MyCommand.Path
 $dir = Split-Path $scriptpath
 Push-Location $dir
 
-winget install Microsoft.VisualStudioCode
+if (-not (Get-Command code -ErrorAction SilentlyContinue)) {
+    winget install Microsoft.VisualStudioCode --source winget
+}
 
 # Ensure code is available in path
 refreshpath
 
+$vscodeUserDir = "$env:APPDATA\Code\User"
+New-Item -ItemType Directory -Path $vscodeUserDir -Force 1> $null
+
 # Copy over the settings.json
-$settingsPath = "$env:APPDATA\Code\User\settings.json"
-if(Test-Path $settingsPath -PathType Leaf){
-    New-Item $settingsPath -Type File -Force
-}
-Copy-Item -Path ./settings.json -Destination $settingsPath -Force 1> $null
+Copy-Item -Path ./settings.json -Destination "$vscodeUserDir\settings.json" -Force 1> $null
+
+# Copy over the keybindings.json
+Copy-Item -Path ./keybindings.json -Destination "$vscodeUserDir\keybindings.json" -Force 1> $null
 
 # Install extensions
-code --install-extension vscodevim.vim
-code --install-extension ms-vscode-remote.remote-wsl
-code --install-extension ms-vscode-remote.remote-wsl
-code --install-extension bierner.markdown-preview-github-styles
-code --install-extension bierner.markdown-mermaid
-code --install-extension DavidAnson.vscode-markdownlint
-code --install-extension esbenp.prettier-vscode
-code --install-extension eamodio.gitlens
-code --install-extension streetsidesoftware.code-spell-checker
+$extensions = @(
+    "vscodevim.vim",
+    "ms-vscode-remote.remote-wsl",
+    "bierner.markdown-preview-github-styles",
+    "bierner.markdown-mermaid",
+    "DavidAnson.vscode-markdownlint",
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "streetsidesoftware.code-spell-checker"
+)
+foreach ($ext in $extensions) {
+    code --install-extension $ext
+}
