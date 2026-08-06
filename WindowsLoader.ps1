@@ -6,4 +6,5 @@ param(
 winget install --id Microsoft.Powershell --source winget
 
 # run install script in new powershell
-pwsh -Command "& 'C:\Program Files\PowerShell\7\pwsh.exe' .\WindowsFiles\install.ps1 $Mode"
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+pwsh .\WindowsFiles\install.ps1 $Mode
