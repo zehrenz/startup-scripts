@@ -61,6 +61,12 @@ else {
     Write-Output "Could not find $profile_location"
 }
 
+# Copy .gitconfig if one isn't already in place
+$gitconfigDest = Join-Path $HOME ".gitconfig"
+if (-not (Test-Path $gitconfigDest -PathType Leaf)) {
+    Copy-Item -Path "..\CommonFiles\git\.gitconfig" -Destination $gitconfigDest
+}
+
 # Install any modules in ./WindowsFiles/Modules
 if (Test-Path $modules_location -PathType Container) {
     $module_destination = $env:PSModulePath.Split(";")[0]
