@@ -41,10 +41,21 @@ if (-not (Get-Module -ListAvailable -Name posh-git)) {
     PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
 }
 
+# Install ps-dotenv if not already installed
+if (-not (Get-Module -ListAvailable -Name Dotenv)) {
+    $dotenvZip = Join-Path $env:TEMP "Dotenv.zip"
+    $moduleDestination = $env:PSModulePath.Split(";")[0]
+    Invoke-WebRequest -Uri "https://github.com/insomnimus/ps-dotenv/releases/latest/download/Dotenv.zip" -OutFile $dotenvZip
+    Expand-Archive -Path $dotenvZip -DestinationPath $moduleDestination -Force
+    Remove-Item $dotenvZip
+}
+
 # Install the profile
 if (Test-Path $profile_location -PathType Leaf) {
-    New-Item $PROFILE -ItemType File -Force 1> $null
-    Copy-Item $profile_location $PROFILE 1> $null
+    if (-not (Test-Path $PROFILE -PathType Leaf)) {
+        New-Item $PROFILE -ItemType File -Force 1> $null
+        Copy-Item $profile_location $PROFILE 1> $null
+    }
 }
 else {
     Write-Output "Could not find $profile_location"
