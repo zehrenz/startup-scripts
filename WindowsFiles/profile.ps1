@@ -31,7 +31,7 @@ Function prompt {
             Write-Host " $currentFolder" -ForegroundColor DarkCyan -NoNewline
         }
     }
-    return "> "
+    return "`n> "
 }
 
 new-alias -Name np -Value notepad
