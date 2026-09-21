@@ -11,7 +11,7 @@ command -v apt-get > /dev/null || { echo "apt-get is required to run this script
 
 # Install all the commands from apt
 sudo apt-get update
-sudo apt install -y fish neovim zip build-essential curl
+sudo apt install -y fish neovim zip build-essential curl direnv zoxide
 
 # Set fish and neovim as the defaults
 chsh -s "$(command -v fish)"

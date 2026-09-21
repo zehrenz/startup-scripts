@@ -85,6 +85,9 @@ if status is-interactive
 	end
 
 	# Git
+	function gtop
+		cd (git rev-parse --show-toplevel)
+	end
 	function gph
 		git push $argv
 	end
@@ -153,6 +156,14 @@ if status is-interactive
 	function gsm
 		git switch -
 	end
+	function grs
+		git restore "*"
+	end
+	function gmatch
+		git add "*$argv[1]*"
+	end
 
+	zoxide init fish | source
 end
 
+direnv hook fish | source
