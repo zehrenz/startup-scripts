@@ -1,44 +1,43 @@
-#!/bin/sh
+#!/usr/bin/sh
 
-SCRIPT_LOCATION="./LinuxFiles/Scripts"
+set -e
+
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+
+SCRIPT_LOCATION="$SCRIPT_DIR/LinuxFiles/Scripts"
 
 #make sure apt-get is installed
 command -v apt-get > /dev/null || { echo "apt-get is required to run this script."; exit 1; }
 
-if ! command -v fish > /dev/null; then
-    sudo apt-add-repository -y ppa:fish-shell/release-3
-    sudo apt update 
-fi
-
 # Install all the commands from apt
-sudo apt install -y fish neovim zip build-essentials
+sudo apt-get update
+sudo apt install -y fish neovim zip build-essential curl
 
 # Set fish and neovim as the defaults
-chsh -s /usr/bin/fish
-echo "SELECTED_EDITOR=\"$(which nvim)\"" > ~/.selected_editor
+chsh -s "$(command -v fish)"
+echo "SELECTED_EDITOR=\"$(command -v nvim)\"" > "$HOME/.selected_editor"
 
-if test -f ./LinuxFiles/LinuxLoader.fish; then
-    fish ./LinuxFiles/LinuxLoader.fish
+if test -f "$SCRIPT_DIR/LinuxFiles/LinuxLoader.fish"; then
+    fish "$SCRIPT_DIR/LinuxFiles/LinuxLoader.fish"
 else
-    echo "Missing file './LinuxFiles/LinuxLoader.fish'"
+    echo "Missing file '$SCRIPT_DIR/LinuxFiles/LinuxLoader.fish'"
 fi
 
-NVIM_CONF="./LinuxFiles/config/nvim"
-if test -d $NVIM_CONF; then
-	cp -r $NVIM_CONF "~/.config/"
+NVIM_CONF="$SCRIPT_DIR/LinuxFiles/config/nvim"
+if test -d "$NVIM_CONF"; then
+    mkdir -p "$HOME/.config/nvim"
+    cp -R "$NVIM_CONF"/. "$HOME/.config/nvim/"
 else
-	echo "Missing neovim config files"
+    echo "Missing neovim config files"
 fi
 
-if test -d $SCRIPT_LOCATION; then
-    if ! test -d ~/bin; then
-        mkdir ~/bin
-    fi
+if test -d "$SCRIPT_LOCATION"; then
+    mkdir -p "$HOME/bin"
 
-    readarray -t files <<< $(ls $SCRIPT_LOCATION)
-    for file in "${files[@]}"; do
-        cp "$SCRIPT_LOCATION/$file" ~/bin/
+    for file in "$SCRIPT_LOCATION"/*; do
+        test -f "$file" || continue
+        cp "$file" "$HOME/bin/"
     done
 fi
 
-exec fish
+# exec fish

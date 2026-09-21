@@ -5,8 +5,12 @@ if status is-interactive
 	end
 
 	# If this is in WSL, change some things
-	if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]
-		set BROWSER wslview
+	if string match -qi '*microsoft*' (uname -r)
+		if command -q wslview
+			set -gx BROWSER wslview
+		else
+			set -gx BROWSER explorer.exe
+		end
 	end
 
 	if [ -d "/home/linuxbrew/.linuxbrew/bin" ]

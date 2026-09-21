@@ -1,12 +1,13 @@
-# Install the fish config file
-if [ -f ./config.fish ]
-    cp -f ./config.fish ~/.config/fish/config.fish
-end
+# Resolve paths from this file so the loader can run from any directory.
+set SCRIPT_DIR (dirname (status filename))
 
-# If in wsl install some helpful stuff
-if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]
-    dpkg -l wslu &> /dev/null || apt-get install -y wslu
+# Install the fish config file
+if test -f "$SCRIPT_DIR/config.fish"
+    mkdir -p "$HOME/.config/fish"
+    cp -f "$SCRIPT_DIR/config.fish" "$HOME/.config/fish/config.fish"
 end
 
 # Install Homebrew
-NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if not command -q brew; and not test -x /home/linuxbrew/.linuxbrew/bin/brew
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+end
